@@ -1,0 +1,50 @@
+#userForm {
+    background-color: #fff;
+    width: 600px;
+    margin: 10px auto;
+    border: 1px solid #d1d1d1;
+    padding: 30px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .4);
+}
+
+#formTitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#userFormButton {
+    width: 100%;
+    background-color: rgba(27, 182, 209, .8);
+    border: none;
+    color: #fff;
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(27, 182, 209, .3);
+}
+
+.control {
+    margin-bottom: 3em;
+}
+
+
+.required {
+    margin-left: .3em;
+    color: #f33;
+    font-size: .9em;
+    padding: 3px;
+    background-color: #fee;
+    font-weight: bold;
+}
+
+.form-errors li {
+    list-style-type: none;
+    color: #f33;
+}
+
+/* responsive form area */
+@media only screen and (max-width: 1000px) {
+    #userForm {
+        max-width: 80%;
+    }
+}

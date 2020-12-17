@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+
+{% block title %}ログイン{% endblock %}
+
+{% block content %}
+    <div id="userForm" class="mx-auto">
+        <h3 class="text-center font-weight-bold border-bottom my-1">ログイン</h3>
+        <form action="{% url 'account_login' %}" method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="form-errors">
+                {{ form.login.errors }}
+                {{ form.password.errors }}
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    {{ form.login }}
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    {{ form.password }}
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            {% if redirect_field_value %}
+                <div class="control">
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                </div>
+            {% endif %}
+            <div class="control mt-4">
+                <p class="text-center">パスワードを忘れた場合は<a class="button" href="{% url 'account_reset_password' %}">こちら</a>
+                </p>
+            </div>
+            <div class="control">
+                <button type="submit" name="login" id="userFormButton">ログイン</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends "base/base.html" %}
+
+{% block title %}メール送信完了{% endblock %}
+
+{% block content %}
+    <div id="userForm" class="mx-auto">
+        <h3 class="text-center font-weight-bold border-bottom my-1">メールを送信しました</h3>
+        <p class="my-2">
+            認証メールの送信が完了しました。受信したメールから認証を行ってください。
+            もし、数分経ってもメールが届かない場合は管理者に問い合わせてください。
+        </p>
+
+        <footer class="page-footer font-small pt-4">
+            <!--横並びリンク-->
+            <div class="d-none d-sm-block">
+                <div class="nav d-flex justify-content-center">
+                    <a href="{% url 'ishot_site:index' %}" class="nav-link">トップへ</a>
+                    <a href="{% url 'ishot_site:inquiry_form' %}" class="nav-link">管理者に問い合わせる</a>
+                </div>
+            </div>
+            <!--//横並びリンク-->
+            <!--縦並びリンク-->
+            <div class="d-block d-sm-none">
+                <div class="nav flex-column">
+                    <a href="{% url 'ishot_site:index' %}" class="nav-link">トップへ</a>
+                    <a href="{% url 'ishot_site:inquiry_form' %}" class="nav-link">管理者に問い合わせる</a>
+                </div>
+            </div>
+            <!--縦並びリンク-->
+        </footer>
+    </div>
+{% endblock %}
