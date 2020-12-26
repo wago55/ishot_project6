@@ -10,5 +10,5 @@ urlpatterns = [
     path('practice/del/<int:practice_id>', views.practice_del, name='practice_del'),
     path('inquiry/', views.InquiryView.as_view(), name='inquiry_form'),
     path('profile/edit/', views.ProfileEditView.as_view(), name='profile_edit'),
-    path('profile/', views.ProfileView.as_view(), name='profile')
+    path('profile/', views.ProfileView.as_view(), name='profile'),
 ]

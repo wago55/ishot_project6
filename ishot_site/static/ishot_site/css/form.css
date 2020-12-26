@@ -37,7 +37,7 @@
     font-weight: bold;
 }
 
-.form-errors li {
+.form-errors li{
     list-style-type: none;
     color: #f33;
 }

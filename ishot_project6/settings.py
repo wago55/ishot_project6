@@ -147,8 +147,9 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True
 
 # ログイン、ログアウト時の遷移先の設定
+LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = 'ishot_site:index'
-ACCOUNT_LOGOUT_REDIRECT_URL = 'ishot_site:index'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'index'
 
 # ログアウト確認なしでワンクリックでログアウト
 ACCOUNT_LOGOUT_ON_GET = True
