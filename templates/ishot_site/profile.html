@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base/base.html" %}
+{% block active_profile_list %}active{% endblock %}
+{% block content %}
 
-</body>
-</html>
+    {% for profile in userprofile_list %}
+        {{ profile.user}}
+        {# TO DO ここに現在の保存されているプロフィールを一覧する (6行目はサンプルとして置いているだけです。) #}
+        <a class="btn btn-primary" href="{% url 'ishot_site:profile_detail' profile.pk %}">編集</a>
+
+    {% endfor %}
+
+
+{% endblock %}

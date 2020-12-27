@@ -34,6 +34,7 @@ class UserProfile(models.Model):
         ('1', '男性'),
         ('2', '女性'),
     )
+    user = models.ForeignKey(CustomUser, on_delete=models.PROTECT, default=None)
     last_name = models.CharField(max_length=30)
     first_name = models.CharField(max_length=30)
     sex = models.CharField(max_length=2, choices=GENDER_CHOICES)
@@ -42,4 +43,5 @@ class UserProfile(models.Model):
     grade = models.IntegerField(blank=True)
     experience = models.IntegerField()
 
-
+    class Metal:
+        verbose_name_plural = 'UserProfile'

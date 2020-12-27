@@ -1,0 +1,10 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}プロフィール更新{% endblock title %}
+
+{% block content %}
+    <p>プロフィールの編集をしますか？</p>
+    <a class="btn btn-primary" href="{% url 'ishot_site:profile_update' object.pk %}">はい</a>
+    <a class="btn btn-primary" href="{% url 'ishot_site:profile_list' %}">いいえ</a>
+{% endblock %}
