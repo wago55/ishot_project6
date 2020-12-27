@@ -3,7 +3,7 @@
 
 {% block title %}練習の編集{% endblock title %}
 
-{% block contents %}
+{% block content %}
     <h4 class="mt-4 mb-5 border-bottom">練習の編集</h4>
     {% if practice_id %}
     <form action="{% url 'ishot_site:practice_mod' practice_id=practice_id %}" method="post">

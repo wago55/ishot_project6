@@ -80,7 +80,7 @@ class ProfileUpdateView(UpdateView, LoginRequiredMixin):
     def get_success_url(self):
         return reverse_lazy('ishot_site:profile_detail', kwargs={'pk': self.kwargs['pk']})
 
-    def form_invalid(self, form):
+    def form_valid(self, form):
         messages.success(self.request, 'プロフィールを更新しました。')
         return super().form_valid(form)
 
