@@ -23,14 +23,12 @@
                     {{ form.password }}
                 </div> <!-- input-group.// -->
             </div> <!-- form-group// -->
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                    </div>
-                    {{ form.remember }}
-                </div> <!-- input-group.// -->
-            </div> <!-- form-group// -->
+            {#            <div class="form-check mb-2">#}
+            {#                {{ form.remember }}#}
+            {#                <label class="form-check-label" for="inlineFormCheck">#}
+            {#                    Remember me#}
+            {#                </label>#}
+            {#            </div>#}
             <input type="hidden" name="next" value="{{ next }}"/>
             <div class="control mt-5">
                 <button type="submit" id="userFormButton">ログイン</button>
@@ -39,4 +37,12 @@
         </form>
     </div>
 
+
+    {% block extra_js %}
+        <script>
+            $(function () {
+                $("#id_remember").removeClass("form-control")
+            });
+        </script>
+    {% endblock %}
 {% endblock %}
