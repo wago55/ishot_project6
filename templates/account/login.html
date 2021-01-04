@@ -4,21 +4,39 @@
 {% block active_login %}active{% endblock %}
 
 {% block content %}
-<form action="" method="POST">
-    <div class="col-md-6 offset-md-3">
-        <div class="card">
-            <div class="card-body">
-                {{ form.non_field_errors }}
-                {% for field in form %}
-                    {{ field }}
-                    {{ field.errors }}
-                    <hr>
-                {% endfor %}
-                <button type="submit" class="btn btn-success btn-lg btn-block" >ログイン</button>
-                <input type="hidden" name="next" value="{{ next }}" />
-                {% csrf_token %}
+    <div id="userForm" class="mx-auto">
+        <h3 class="text-center font-weight-bold border-bottom my-1">ログイン</h3>
+        <form action="" method="POST" class="mt-4">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    {{ form.login }}
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    {{ form.password }}
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    {{ form.remember }}
+                </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <input type="hidden" name="next" value="{{ next }}"/>
+            <div class="control mt-5">
+                <button type="submit" id="userFormButton">ログイン</button>
             </div>
-        </div>
+            {% csrf_token %}
+        </form>
     </div>
-</form>
+
 {% endblock %}
