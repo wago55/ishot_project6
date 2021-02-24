@@ -10,6 +10,9 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
+class HomeView(ListView, LoginRequiredMixin):
+
+
 
 class IndexView(TemplateView):
     template_name = 'ishot_site/index.html'
