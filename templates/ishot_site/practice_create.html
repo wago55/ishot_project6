@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-{% block title %}プロフィール作成{% endblock title %}
+{% block title %}練習の作成{% endblock title %}
 
 {% block content %}
 <div class="container">
@@ -26,9 +26,9 @@
                 {% endfor %}
 
                 <div class="offset-sm-4 col-sm-8">
+                    <a href="{% url 'ishot_site:practice_list' %}" class="btn btn-primary">キャンセル</a>
                     <button class="btn btn-primary" type="submit">送信</button>
                 </div>
-
             </form>
         </div>
     </div>

@@ -21,6 +21,8 @@ class Practice(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
+    participations = models.ManyToManyField
+
 
 class Inquiry(models.Model):
     name = models.CharField(max_length=30)
@@ -45,3 +47,4 @@ class UserProfile(models.Model):
 
     class Metal:
         verbose_name_plural = 'UserProfile'
+
