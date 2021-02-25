@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import TemplateView, CreateView, FormView, ListView, UpdateView, DetailView
+from django.views.generic import TemplateView, CreateView, FormView, ListView, UpdateView, DetailView, DeleteView
 from django.http import HttpResponse, request
 
 from ishot_site.models import Practice, UserProfile
@@ -10,18 +10,41 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-class HomeView(ListView, LoginRequiredMixin):
 
+class HomeView(ListView, LoginRequiredMixin):
+    template_name = 'ishot_site/home.html'
+
+    def get_queryset(self):
+        profile = UserProfile.objects.filter(user=self.request.user)
+        return profile
 
 
 class IndexView(TemplateView):
     template_name = 'ishot_site/index.html'
 
 
-def practice_list(request):
-    # return HttpResponse('練習一覧')
-    practices = Practice.objects.all().order_by('id')
-    return render(request, 'ishot_site/practice_list.html', {'practices': practices})
+class PracticeListView(ListView, LoginRequiredMixin):
+    model = Practice
+    template_name = 'ishot_site/practice_list.html'
+
+    def get_queryset(self):
+        practice = Practice.objects.order_by('id')
+
+        return practice
+
+
+class PracticeCreateView(CreateView, LoginRequiredMixin):
+    model = Practice
+    template_name = 'ishot_site/practice_create.html'
+    form_class = PracticeForm
+    success_url = reverse_lazy('ishot_site:practice_list')
+
+    def form_valid(self, form):
+        practice = form.save(commit=False)
+        practice.user = self.request.user
+        practice.save()
+        messages.success(self.request, '練習の作成が完了しました。')
+        return super().form_valid(form)
 
 
 def practice_edit(request, practice_id=None):
@@ -40,7 +63,24 @@ def practice_edit(request, practice_id=None):
     else:
         form = PracticeForm(instance=practice)
 
-    return render(request, 'ishot_site/practice_edit.html', dict(form=form, practice_id=practice_id))
+    return render(request, 'ishot_site/practice_create.html', dict(form=form, practice_id=practice_id))
+
+
+class PracticeUpdateView(UpdateView, LoginRequiredMixin):
+    model = Practice
+    template_name = 'ishot_site/practice_update.html'
+    form_class = PracticeForm
+    success_url = reverse_lazy('ishot_site:profile_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'プロフィールを更新しました。')
+        return super().form_valid(form)
+
+
+class PracticeDeleteView(DeleteView, LoginRequiredMixin):
+    model = Practice
+    template_name = 'ishot_site/practice_delete.html'
+    success_url = reverse_lazy('ishot_site:practice_list')
 
 
 def practice_del(request, practice_id):
@@ -81,7 +121,7 @@ class ProfileUpdateView(UpdateView, LoginRequiredMixin):
     form_class = ProfileForm
 
     def get_success_url(self):
-        return reverse_lazy('ishot_site:profile_detail', kwargs={'pk': self.kwargs['pk']})
+        return reverse_lazy('ishot_site:profile_list')
 
     def form_valid(self, form):
         messages.success(self.request, 'プロフィールを更新しました。')
@@ -95,10 +135,9 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 
 class ProfileListView(ListView, LoginRequiredMixin):
     model = UserProfile
-    template_name = 'ishot_site/profile.html'
+    template_name = 'ishot_site/profile_list.html'
 
     def get_queryset(self):
         profiles = UserProfile.objects.filter(user=self.request.user)
 
         return profiles
-

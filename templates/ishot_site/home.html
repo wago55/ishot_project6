@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base/base.html" %}
 
-</body>
-</html>
+{% block content %}
+    <p>こんにちは、{{ user }} さん</p>
+    {% for profile in userprofile_list  %}
+        <a href="{% url 'ishot_site:profile_list' %}" class="btn btn-outline-primary btn-sm">プロフィール作成はこちら</a>
+    {% empty %}
+        <a href="{% url 'ishot_site:profile_create' %}" class="btn btn-outline-primary btn-sm">プロフィール作成はこちら</a>
+    {% endfor %}
+{% endblock %}

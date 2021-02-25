@@ -3,11 +3,12 @@ from . import views
 
 app_name = 'ishot_site'
 urlpatterns = [
-    path('', views.IndexView.as_view(), name="index"),
-    path('practice/', views.practice_list, name='practice_list'),
-    path('practice/add', views.practice_edit, name='practice_add'),
-    path('practice/mod/<int:practice_id>/', views.practice_edit, name='practice_mod'),
-    path('practice/del/<int:practice_id>', views.practice_del, name='practice_del'),
+    path('index', views.IndexView.as_view(), name="index"),
+    path('home', views.HomeView.as_view(), name='home'),
+    path('practice/', views.PracticeListView.as_view(), name='practice_list'),
+    path('practice/create/', views.PracticeCreateView.as_view(), name='practice_create'),
+    path('practice/update/<int:pk>/', views.PracticeUpdateView.as_view(), name='practice_update'),
+    path('practice/delete/<int:pk>', views.PracticeDeleteView.as_view(), name='practice_delete'),
     path('inquiry/', views.InquiryView.as_view(), name='inquiry_form'),
     path('profile/create/', views.ProfileCreateView.as_view(), name='profile_create'),
     path('profile/', views.ProfileListView.as_view(), name='profile_list'),
